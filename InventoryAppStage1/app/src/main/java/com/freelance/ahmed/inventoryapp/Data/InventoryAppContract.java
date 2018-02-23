@@ -7,7 +7,7 @@ import android.provider.BaseColumns;
  */
 
 public class InventoryAppContract {
-    public static final class InventoryEntry implements BaseColumns{
+    public static final class InventoryEntry implements BaseColumns {
         public static final String TABLE_NAME = "Products";
         public static final String COLUMN_PRODUCT_NAME = "productName";
         public static final String COLUMN_PRODUCT_PRICE = "productPrice";

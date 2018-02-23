@@ -7,4 +7,7 @@
     <string name="supplierPhone">Enter Supplier Phone..</string>
     <string name="addToInventory">Add to inventory</string>
     <string name="viewResult">Show All Inventory</string>
+    <string name="error">You must Enter a Value!</string>
+    <string name="successmsg">Product Added Successfully</string>
+    <string name="failedmsg">Failed to Add the Product</string>
 </resources>

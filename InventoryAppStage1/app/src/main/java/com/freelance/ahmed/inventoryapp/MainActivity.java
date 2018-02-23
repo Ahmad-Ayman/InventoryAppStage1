@@ -57,21 +57,47 @@ public class MainActivity extends AppCompatActivity {
         InventoryAppDbHelper dbHelper = new InventoryAppDbHelper(this);
         SQLiteDatabase sql = dbHelper.getWritableDatabase();
         ContentValues products = new ContentValues();
-        products.put(InventoryAppContract.InventoryEntry.COLUMN_PRODUCT_NAME, productName.getText().toString());
-        products.put(InventoryAppContract.InventoryEntry.COLUMN_PRODUCT_PRICE, productPrice.getText().toString());
-        products.put(InventoryAppContract.InventoryEntry.COLUMN_PRODUCT_QUANTITY, productQuantity.getText().toString());
-        products.put(InventoryAppContract.InventoryEntry.COLUMN_SUPPLIER_NAME, supplierName.getText().toString());
-        products.put(InventoryAppContract.InventoryEntry.COLUMN_SUPPLIER_PHONE, supplierPhone.getText().toString());
+        String pname, pprice, pquantity, suppliername, supplierphone;
+        pname = productName.getText().toString();
+        pprice = productPrice.getText().toString();
+        pquantity = productQuantity.getText().toString();
+        suppliername = supplierName.getText().toString();
+        supplierphone = supplierPhone.getText().toString();
+        if (pname.trim().equals("")) {
+            productName.setError(getResources().getString(R.string.error));
+        } else {
+            products.put(InventoryAppContract.InventoryEntry.COLUMN_PRODUCT_NAME, pname);
+        }
+        if (pprice.trim().equals("")) {
+            productPrice.setError(getResources().getString(R.string.error));
+        } else {
+            products.put(InventoryAppContract.InventoryEntry.COLUMN_PRODUCT_PRICE, pprice);
+        }
+        if (pquantity.trim().equals("")) {
+            productQuantity.setError(getResources().getString(R.string.error));
+        } else {
+            products.put(InventoryAppContract.InventoryEntry.COLUMN_PRODUCT_QUANTITY, pquantity);
+        }
+        if (suppliername.trim().equals("")) {
+            supplierName.setError(getResources().getString(R.string.error));
+        } else {
+            products.put(InventoryAppContract.InventoryEntry.COLUMN_SUPPLIER_NAME, suppliername);
+        }
+        if (supplierphone.trim().equals("")) {
+            supplierPhone.setError(getResources().getString(R.string.error));
+        } else {
+            products.put(InventoryAppContract.InventoryEntry.COLUMN_SUPPLIER_PHONE, supplierphone);
+        }
         long newRowInsertedID = sql.insert(InventoryAppContract.InventoryEntry.TABLE_NAME, null, products);
         if (newRowInsertedID != -1) {
-            Toast.makeText(this, "Product Added Successfully", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getResources().getString(R.string.successmsg), Toast.LENGTH_SHORT).show();
             productName.setText("");
             productPrice.setText("");
             productQuantity.setText("");
             supplierName.setText("");
             supplierPhone.setText("");
         } else {
-            Toast.makeText(this, "Failed to Add the Product", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getResources().getString(R.string.failedmsg), Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -91,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
                 null,
                 InventoryAppContract.InventoryEntry.COLUMN_PRODUCT_QUANTITY
         );
-
+        TextView data = findViewById(R.id.showdatatv);
         try {
 
             int productNameColumnIndex = cursor.getColumnIndex(InventoryAppContract.InventoryEntry.COLUMN_PRODUCT_NAME);
@@ -99,7 +125,6 @@ public class MainActivity extends AppCompatActivity {
             while (cursor.moveToNext()) {
                 String productnameString = cursor.getString(productNameColumnIndex);
                 int quantity = cursor.getInt(quantityColumnIndex);
-                TextView data = findViewById(R.id.showdatatv);
                 data.append("\n" + "Product: " + productnameString + " | Quantity: " + quantity);
                 data.setVisibility(View.VISIBLE);
             }

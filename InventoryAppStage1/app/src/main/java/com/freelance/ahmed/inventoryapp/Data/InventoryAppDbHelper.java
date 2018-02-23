@@ -21,7 +21,7 @@ public class InventoryAppDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        // Create a table to hold waitlist data
+        // Create a table to hold products data
         final String SQL_CREATE_INVENTORY_TABLE = "CREATE TABLE " + InventoryAppContract.InventoryEntry.TABLE_NAME + " (" +
                 InventoryAppContract.InventoryEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 InventoryAppContract.InventoryEntry.COLUMN_PRODUCT_NAME + " TEXT NOT NULL, " +
@@ -30,7 +30,7 @@ public class InventoryAppDbHelper extends SQLiteOpenHelper {
                 InventoryAppContract.InventoryEntry.COLUMN_SUPPLIER_NAME + " TEXT NOT NULL, " +
                 InventoryAppContract.InventoryEntry.COLUMN_SUPPLIER_PHONE + " TEXT NOT NULL " +
                 "); ";
-            // execute the query
+        // execute the query
         sqLiteDatabase.execSQL(SQL_CREATE_INVENTORY_TABLE);
     }
 
