@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">InventoryApp</string>
+    <string name="productName">Enter Product Name..</string>
+    <string name="productPrice">Enter Product Price..</string>
+    <string name="productQuantity">Enter Product Quantity..</string>
+    <string name="supplierName">Enter Supplier Name..</string>
+    <string name="supplierPhone">Enter Supplier Phone..</string>
+    <string name="addToInventory">Add to inventory</string>
+    <string name="viewResult">Show All Inventory</string>
 </resources>
